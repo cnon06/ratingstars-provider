@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:ratingstars/ratingstars.dart';
 
-class Stars extends StatefulWidget {
+import 'starsvm.dart';
+
+class Stars extends StatelessWidget {
   const Stars({Key? key}) : super(key: key);
 
-  @override
-  State<Stars> createState() => _StarsState();
-}
-
-class _StarsState extends State<Stars> {
-  int rating = -1;
+ 
+ // int rating = -1;
   @override
   Widget build(BuildContext context) {
    
@@ -18,8 +17,15 @@ class _StarsState extends State<Stars> {
       appBar: AppBar(
         title: const Text("Rating Stars"),
       ),
-      body: const Center(
-        child: RatingStars(),
+      body:  Center(
+        child:
+        
+         ChangeNotifierProvider.value(
+          value: StarsVM(),
+          child: const RatingStars(),
+        )
+        
+        //  RatingStars(),
        
       ),
     );
